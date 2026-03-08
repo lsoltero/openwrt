@@ -1,0 +1,193 @@
+OpenWrt Fork Workflow
+=====================
+
+Purpose
+-------
+This document describes the recommended Git workflow for maintaining a fork of
+the OpenWrt repository while keeping it synchronized with upstream development.
+
+This approach keeps the fork clean and makes upgrading OpenWrt versions easy.
+
+Repository Structure
+--------------------
+
+GitHub fork:
+    https://github.com/<YOURUSER>/openwrt
+
+Remotes:
+
+    origin   -> your GitHub fork
+    upstream -> official OpenWrt repository
+
+Branches:
+
+    main                upstream development branch
+    openwrt-25.12       upstream release branch
+    pw-hub-25.12        local working branch for custom modifications
+
+
+Initial Setup
+-------------
+
+1. Fork the OpenWrt repository on GitHub
+
+    https://github.com/openwrt/openwrt
+
+
+2. Clone your fork
+
+    git clone git@github.com:<YOURUSER>/openwrt.git
+    cd openwrt
+
+
+3. Add the upstream OpenWrt repository
+
+    git remote add upstream https://github.com/openwrt/openwrt.git
+
+
+4. Fetch upstream branches
+
+    git fetch upstream
+
+
+Create a Local Tracking Branch
+------------------------------
+
+Example for OpenWrt 25.12:
+
+    git checkout -b openwrt-25.12 upstream/openwrt-25.12
+
+
+Push this branch to your fork:
+
+    git push origin openwrt-25.12
+
+
+Create Your Working Branch
+--------------------------
+
+Do NOT modify the upstream tracking branch directly.
+
+Instead create a working branch:
+
+    git checkout -b pw-hub-25.12 openwrt-25.12
+
+
+All custom work should occur in this branch.
+
+
+Keeping Your Fork Updated
+-------------------------
+
+Update the upstream branch:
+
+    git checkout openwrt-25.12
+    git fetch upstream
+    git pull --rebase upstream openwrt-25.12
+
+
+Update your working branch:
+
+    git checkout pw-hub-25.12
+    git rebase openwrt-25.12
+
+
+Push updates to GitHub:
+
+    git push --force-with-lease
+
+
+Using Rebase Instead of Merge
+-----------------------------
+
+Always use rebase when syncing with upstream.
+
+Correct:
+
+    git pull --rebase upstream openwrt-25.12
+
+Avoid:
+
+    git merge upstream/openwrt-25.12
+
+Rebasing keeps the commit history clean and avoids unnecessary merge commits.
+
+
+Optional Git Alias
+------------------
+
+You can simplify upstream syncing by adding this alias to ~/.gitconfig:
+
+    [alias]
+    sync = !"git fetch upstream && git rebase upstream/$(git rev-parse --abbrev-ref HEAD)"
+
+
+After adding this alias you can update your branch with:
+
+    git sync
+
+
+Recommended Patch Strategy
+--------------------------
+
+For large OpenWrt customizations it is often easier to maintain changes as patches.
+
+Example structure:
+
+    patches/
+        001-feature.patch
+        002-driver.patch
+        003-package.patch
+
+
+Apply patches with:
+
+    git am patches/*
+
+
+This approach makes upgrading between OpenWrt versions significantly easier.
+
+
+Recommended Vendor Branch Layout
+--------------------------------
+
+    openwrt
+    ├── main
+    ├── openwrt-25.12
+    └── pw-hub-25.12
+
+    openwrt-25.12
+        Pure upstream tracking branch
+
+    pw-hub-25.12
+        PredictWind DataHub firmware modifications
+
+
+Typical Workflow
+----------------
+
+Update upstream:
+
+    git checkout openwrt-25.12
+    git sync
+
+
+Rebase your modifications:
+
+    git checkout pw-hub-25.12
+    git rebase openwrt-25.12
+
+
+Push your updates:
+
+    git push --force-with-lease
+
+
+Notes
+-----
+
+Do not modify upstream tracking branches directly.
+
+Always develop on a separate working branch.
+
+Rebasing keeps the history clean and makes long-term maintenance much easier.

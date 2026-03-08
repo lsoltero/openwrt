@@ -1,0 +1,715 @@
+
+
+ubi0: attaching mtd6
+ubi0: scanning is finished
+ubi0: attached mtd6 (name "ubi", size 112 MiB)
+ubi0: PEB size: 131072 bytes (128 KiB), LEB size: 126976 bytes
+ubi0: min./max. I/O unit sizes: 2048/2048, sub-page size 2048
+ubi0: VID header offset: 2048 (aligned 2048), data offset: 4096
+ubi0: good PEBs: 900, bad PEBs: 0, corrupted PEBs: 0
+ubi0: user volume: 3, internal volumes: 1, max. volumes count: 128
+ubi0: max/mean erase counter: 19/12, WL threshold: 4096, image sequence number: 0
+ubi0: available PEBs: 0, total reserved PEBs: 900, PEBs reserved for bad PEB handling: 19
+No size specified -> Using max size (44568576)
+Read 44568576 bytes from volume fit to 0000000050000000
+## Loading kernel (any) from FIT Image at 50000000 ...
+   Using 'config-1' configuration
+   Trying 'kernel-1' kernel subimage
+     Description:  ARM64 OpenWrt Linux-6.12.62
+     Type:         Kernel Image
+     Compression:  gzip compressed
+     Data Start:   0x50001000
+     Data Size:    7702238 Bytes = 7.3 MiB
+     Architecture: AArch64
+     OS:           Linux
+     Load Address: 0x46000000
+     Entry Point:  0x46000000
+     Hash algo:    crc32
+     Hash value:   bc892dcd
+     Hash algo:    sha1
+     Hash value:   adde58e3952f303820bfbb29627c318f6a7a439a
+   Verifying Hash Integrity ... crc32+ sha1+ OK
+## Loading fdt (any) from FIT Image at 50000000 ...
+   Using 'config-1' configuration
+   Trying 'fdt-1' fdt subimage
+     Description:  ARM64 OpenWrt asiarf_ap7988-003 device tree blob
+     Type:         Flat Device Tree
+     Compression:  uncompressed
+     Data Start:   0x5075a000
+     Data Size:    46186 Bytes = 45.1 KiB
+     Architecture: AArch64
+     Load Address: 0x45f00000
+     Hash algo:    crc32
+     Hash value:   b6258a3b
+     Hash algo:    sha1
+     Hash value:   6e1d9742a21f747eca18026594cbee1ef5d9a20c
+   Verifying Hash Integrity ... crc32+ sha1+ OK
+   Loading fdt from 0x5075a000 to 0x45f00000
+   Booting using the fdt blob at 0x45f00000
+Working FDT set to 45f00000
+## Loading loadables (any) from FIT Image at 50000000 ...
+   Trying 'rootfs-1' loadables subimage
+     Description:  ARM64 OpenWrt asiarf_ap7988-003 rootfs
+     Type:         Filesystem Image
+     Compression:  uncompressed
+     Data Start:   0x50769000
+     Data Size:    36622336 Bytes = 34.9 MiB
+     Hash algo:    crc32
+     Hash value:   9609d2e0
+     Hash algo:    sha1
+     Hash value:   186d84cd9cbd1eef9eba5d3cee6cb93a13d783e6
+   Verifying Hash Integrity ... crc32+ sha1+ OK
+   Uncompressing Kernel Image to 46000000
+   Loading Device Tree to 000000007e7ec000, end 000000007e7fa469 ... OK
+Working FDT set to 7e7ec000
+set /chosen/rootdisk to bootrom media: rootdisk-spim-nand (phandle 0x0000005b)
+FIT volume for fitblk set to 'fit'
+
+Starting kernel ...
+
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x411fd090]
+[    0.000000] Linux version 6.12.62 (elwin@ubuntu-2204) (aarch64-openwrt-linux-musl-gcc (OpenWrt GCC 14.3.0 r32381-0d3e93e7ba) 14.3.0, GNU ld (GNU Binutils) 2.44) #0 SMP Wed Dec 31 02:52:01 2025
+[    0.000000] Machine model: AsaiRF AP7988-003
+[    0.000000] OF: reserved mem: 0x0000000042ff0000..0x0000000042ffffff (64 KiB) map non-reusable ramoops@42ff0000
+[    0.000000] OF: reserved mem: 0x0000000043000000..0x000000004304ffff (320 KiB) nomap non-reusable secmon@43000000
+[    0.000000] OF: reserved mem: 0x0000000047cc0000..0x0000000047dbffff (1024 KiB) nomap non-reusable wmcpu-reserved@47cc0000
+[    0.000000] OF: reserved mem: 0x000000004f600000..0x000000004f63ffff (256 KiB) nomap non-reusable wo-emi@4f600000
+[    0.000000] OF: reserved mem: 0x000000004f640000..0x000000004f67ffff (256 KiB) nomap non-reusable wo-emi@4f640000
+[    0.000000] OF: reserved mem: 0x000000004f680000..0x000000004f6bffff (256 KiB) nomap non-reusable wo-emi@4f680000
+[    0.000000] OF: reserved mem: 0x000000004f700000..0x000000004fefffff (8192 KiB) nomap non-reusable wo-data@4f700000
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000040000000-0x000000007fffffff]
+[    0.000000]   DMA32    empty
+[    0.000000]   Normal   empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000040000000-0x0000000042ffffff]
+[    0.000000]   node   0: [mem 0x0000000043000000-0x000000004304ffff]
+[    0.000000]   node   0: [mem 0x0000000043050000-0x0000000047cbffff]
+[    0.000000]   node   0: [mem 0x0000000047cc0000-0x0000000047dbffff]
+[    0.000000]   node   0: [mem 0x0000000047dc0000-0x000000004f5fffff]
+[    0.000000]   node   0: [mem 0x000000004f600000-0x000000004f6bffff]
+[    0.000000]   node   0: [mem 0x000000004f6c0000-0x000000004f6fffff]
+[    0.000000]   node   0: [mem 0x000000004f700000-0x000000004fefffff]
+[    0.000000]   node   0: [mem 0x000000004ff00000-0x000000007fffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000040000000-0x000000007fffffff]
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: MIGRATE_INFO_TYPE not supported.
+[    0.000000] psci: SMC Calling Convention v1.5
+[    0.000000] percpu: Embedded 30 pages/cpu s82072 r8192 d32616 u122880
+[    0.000000] pcpu-alloc: s82072 r8192 d32616 u122880 alloc=30*4096
+[    0.000000] pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.000000] CPU features: detected: GIC system register CPU interface
+[    0.000000] CPU features: detected: Spectre-BHB
+[    0.000000] CPU features: kernel page table isolation disabled by kernel configuration
+[    0.000000] alternatives: applying boot alternatives
+[    0.000000] Kernel command line: pci=pcie_bus_perf ubi.block=0,fit root=/dev/fit0 rootwait
+[    0.000000] Dentry cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 65536 (order: 7, 524288 bytes, linear)
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 262144
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] software IO TLB: SWIOTLB bounce buffer size adjusted to 1MB
+[    0.000000] software IO TLB: area num 4.
+[    0.000000] software IO TLB: mapped [mem 0x000000007ea80000-0x000000007eb80000] (1MB)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] 	Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 10 jiffies.
+[    0.000000] RCU Tasks Trace: Setting shift to 2 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=4.
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] GICv3: GIC: Using split EOI/Deactivate mode
+[    0.000000] GICv3: 416 SPIs implemented
+[    0.000000] GICv3: 0 Extended SPIs implemented
+[    0.000000] Root IRQ handler: gic_handle_irq
+[    0.000000] GICv3: GICv3 features: 16 PPIs
+[    0.000000] GICv3: GICD_CTRL.DS=0, SCR_EL3.FIQ=0
+[    0.000000] GICv3: CPU0: found redistributor 0 region 0:0x000000000c080000
+[    0.000000] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+[    0.000000] arch_timer: cp15 timer(s) running at 13.00MHz (phys).
+[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x2ff89eacb, max_idle_ns: 440795202429 ns
+[    0.000000] sched_clock: 56 bits at 13MHz, resolution 76ns, wraps every 4398046511101ns
+[    0.000246] Calibrating delay loop (skipped), value calculated using timer frequency.. 26.00 BogoMIPS (lpj=130000)
+[    0.000253] pid_max: default: 32768 minimum: 301
+[    0.002324] Mount-cache hash table entries: 2048 (order: 2, 16384 bytes, linear)
+[    0.002330] Mountpoint-cache hash table entries: 2048 (order: 2, 16384 bytes, linear)
+[    0.003871] cacheinfo: Unable to detect cache hierarchy for CPU 0
+[    0.004355] rcu: Hierarchical SRCU implementation.
+[    0.004357] rcu: 	Max phase no-delay instances is 1000.
+[    0.004459] Timer migration: 1 hierarchy levels; 8 children per group; 1 crossnode level
+[    0.004716] smp: Bringing up secondary CPUs ...
+[    0.004967] Detected VIPT I-cache on CPU1
+[    0.005010] GICv3: CPU1: found redistributor 1 region 0:0x000000000c0a0000
+[    0.005035] CPU1: Booted secondary processor 0x0000000001 [0x411fd090]
+[    0.005347] Detected VIPT I-cache on CPU2
+[    0.005368] GICv3: CPU2: found redistributor 2 region 0:0x000000000c0c0000
+[    0.005379] CPU2: Booted secondary processor 0x0000000002 [0x411fd090]
+[    0.005631] Detected VIPT I-cache on CPU3
+[    0.005652] GICv3: CPU3: found redistributor 3 region 0:0x000000000c0e0000
+[    0.005662] CPU3: Booted secondary processor 0x0000000003 [0x411fd090]
+[    0.005702] smp: Brought up 1 node, 4 CPUs
+[    0.005707] SMP: Total of 4 processors activated.
+[    0.005709] CPU: All CPU(s) started at EL2
+[    0.005711] CPU features: detected: 32-bit EL0 Support
+[    0.005713] CPU features: detected: CRC32 instructions
+[    0.005740] alternatives: applying system-wide alternatives
+[    0.005831] CPU features: emulated: Privileged Access Never (PAN) using TTBR0_EL1 switching
+[    0.005931] Memory: 994328K/1048576K available (10560K kernel code, 1722K rwdata, 4756K rodata, 576K init, 320K bss, 50276K reserved, 0K cma-reserved)
+[    0.008909] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.008922] futex hash table entries: 1024 (order: 4, 65536 bytes, linear)
+[    0.008977] 28240 pages in range for non-PLT usage
+[    0.008979] 519760 pages in range for PLT usage
+[    0.009937] pinctrl core: initialized pinctrl subsystem
+[    0.011720] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.011952] DMA: preallocated 128 KiB GFP_KERNEL pool for atomic allocations
+[    0.011983] DMA: preallocated 128 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+[    0.012011] DMA: preallocated 128 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    0.012309] thermal_sys: Registered thermal governor 'fair_share'
+[    0.012311] thermal_sys: Registered thermal governor 'bang_bang'
+[    0.012313] thermal_sys: Registered thermal governor 'step_wise'
+[    0.012316] thermal_sys: Registered thermal governor 'user_space'
+[    0.012356] hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
+[    0.012394] ASID allocator initialised with 65536 entries
+[    0.013184] pstore: Using crash dump compression: deflate
+[    0.013190] printk: legacy console [ramoops0] enabled
+[    0.013453] pstore: Registered ramoops as persistent store backend
+[    0.013458] ramoops: using 0x10000@0x42ff0000, ecc: 0
+[    0.015312] /soc/interrupt-controller@c000000: Fixed dependency cycle(s) with /soc/interrupt-controller@c000000
+[    0.018749] /soc/pcie@11290000: Fixed dependency cycle(s) with /soc/pcie@11290000/interrupt-controller
+[    0.018845] /soc/pcie@11300000: Fixed dependency cycle(s) with /soc/pcie@11300000/interrupt-controller
+[    0.018936] /soc/pcie@11310000: Fixed dependency cycle(s) with /soc/pcie@11310000/interrupt-controller
+[    0.028798] cryptd: max_cpu_qlen set to 1000
+[    0.030662] SCSI subsystem initialized
+[    0.030737] libata version 3.00 loaded.
+[    0.030801] pps_core: LinuxPPS API ver. 1 registered
+[    0.030806] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.030816] PTP clock support registered
+[    0.031850] clocksource: Switched to clocksource arch_sys_counter
+[    0.033605] NET: Registered PF_INET protocol family
+[    0.033690] IP idents hash table entries: 16384 (order: 5, 131072 bytes, linear)
+[    0.034753] tcp_listen_portaddr_hash hash table entries: 512 (order: 1, 8192 bytes, linear)
+[    0.034766] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.034775] TCP established hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    0.034809] TCP bind hash table entries: 8192 (order: 6, 262144 bytes, linear)
+[    0.034917] TCP: Hash tables configured (established 8192 bind 8192)
+[    0.035169] MPTCP token hash table entries: 1024 (order: 3, 24576 bytes, linear)
+[    0.035252] UDP hash table entries: 512 (order: 2, 16384 bytes, linear)
+[    0.035271] UDP-Lite hash table entries: 512 (order: 2, 16384 bytes, linear)
+[    0.035429] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    0.035472] PCI: CLS 0 bytes, default 64
+[    0.042784] workingset: timestamp_bits=46 max_order=18 bucket_order=0
+[    0.046581] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.046588] jffs2: version 2.2 (NAND) (SUMMARY) (LZMA) (RTIME) (CMODE_PRIORITY) (c) 2001-2006 Red Hat, Inc.
+[    0.078529] mtk-xsphy soc:xs-phy@11e10000: failed to get ref_clk(id-1)
+[    0.079147] mtk-pcie-gen3 11290000.pcie: host bridge /soc/pcie@11290000 ranges:
+[    0.079166] mtk-pcie-gen3 11290000.pcie: Parsing ranges property...
+[    0.079180] mtk-pcie-gen3 11290000.pcie:       IO 0x0028000000..0x00281fffff -> 0x0028000000
+[    0.079196] mtk-pcie-gen3 11290000.pcie:      MEM 0x0028200000..0x002fffffff -> 0x0028200000
+[    0.079226] /soc/pcie@11290000: Failed to get clk index: 0 ret: -517
+[    0.079235] mtk-pcie-gen3 11290000.pcie: failed to get clocks
+[    0.079300] mtk-pcie-gen3 11300000.pcie: host bridge /soc/pcie@11300000 ranges:
+[    0.079310] mtk-pcie-gen3 11300000.pcie: Parsing ranges property...
+[    0.079322] mtk-pcie-gen3 11300000.pcie:       IO 0x0030000000..0x00301fffff -> 0x0030000000
+[    0.079332] mtk-pcie-gen3 11300000.pcie:      MEM 0x0030200000..0x0037ffffff -> 0x0030200000
+[    0.079351] /soc/pcie@11300000: Failed to get clk index: 0 ret: -517
+[    0.079359] mtk-pcie-gen3 11300000.pcie: failed to get clocks
+[    0.079442] mtk-pcie-gen3 11310000.pcie: host bridge /soc/pcie@11310000 ranges:
+[    0.079451] mtk-pcie-gen3 11310000.pcie: Parsing ranges property...
+[    0.079462] mtk-pcie-gen3 11310000.pcie:       IO 0x0038000000..0x00381fffff -> 0x0038000000
+[    0.079472] mtk-pcie-gen3 11310000.pcie:      MEM 0x0038200000..0x003fffffff -> 0x0038200000
+[    0.079489] /soc/pcie@11310000: Failed to get clk index: 0 ret: -517
+[    0.079498] mtk-pcie-gen3 11310000.pcie: failed to get clocks
+[    0.084249] Serial: 8250/16550 driver, 3 ports, IRQ sharing disabled
+[    0.085033] printk: legacy console [ttyS0] disabled
+[    0.105299] 11000000.serial: ttyS0 at MMIO 0x11000000 (irq = 99, base_baud = 2500000) is a ST16650V2
+[    0.105339] printk: legacy console [ttyS0] enabled
+[    1.152304] 11000200.serial: ttyS1 at MMIO 0x11000200 (irq = 100, base_baud = 2500000) is a ST16650V2
+[    1.162279] random: crng init done
+[    1.167211] loop: module loaded
+[    1.172306] spi-nand spi0.0: CASN page check failed
+[    1.177193] spi-nand spi0.0: Fallback to read ID
+[    1.181922] spi-nand spi0.0: Macronix SPI NAND was found.
+[    1.187311] spi-nand spi0.0: 128 MiB, block size: 128 KiB, page size: 2048, OOB size: 64
+[    1.224394] Signature found at block 1020 [0x07f80000]
+[    1.229525] NMBM management region starts at block 960 [0x07800000]
+[    1.236452] First info table with writecount 0 found in block 960
+[    1.244520] Second info table with writecount 0 found in block 963
+[    1.250693] NMBM has been successfully attached
+[    1.255347] 5 fixed-partitions partitions found on MTD device spi0.0
+[    1.261882] Creating 5 MTD partitions on "spi0.0":
+[    1.266666] 0x000000000000-0x000000100000 : "BL2"
+[    1.272005] 0x000000100000-0x000000180000 : "u-boot-env"
+[    1.277645] 0x000000180000-0x000000580000 : "Factory"
+[    1.284476] 0x000000580000-0x000000780000 : "FIP"
+[    1.290043] 0x000000780000-0x000007800000 : "ubi"
+[    1.338268] ubi0: default fastmap pool size: 45
+[    1.342801] ubi0: default fastmap WL pool size: 22
+[    1.347581] ubi0: attaching mtd4
+[    1.687515] ubi0: scanning is finished
+[    1.694998] ubi0 warning: ubi_eba_init: cannot reserve enough PEBs for bad PEB handling, reserved 17, need 19
+[    1.705226] ubi0: attached mtd4 (name "ubi", size 112 MiB)
+[    1.710703] ubi0: PEB size: 131072 bytes (128 KiB), LEB size: 126976 bytes
+[    1.717572] ubi0: min./max. I/O unit sizes: 2048/2048, sub-page size 2048
+[    1.724351] ubi0: VID header offset: 2048 (aligned 2048), data offset: 4096
+[    1.731299] ubi0: good PEBs: 900, bad PEBs: 0, corrupted PEBs: 0
+[    1.737298] ubi0: user volume: 3, internal volumes: 1, max. volumes count: 128
+[    1.744508] ubi0: max/mean erase counter: 19/12, WL threshold: 4096, image sequence number: 0
+[    1.753021] ubi0: available PEBs: 0, total reserved PEBs: 900, PEBs reserved for bad PEB handling: 17
+[    1.762232] ubi0: background thread "ubi_bgt0d" started, PID 250
+[    1.762528] block ubiblock0_1: created from ubi0:1(fit)
+[    1.776511] mt7530-mmio 15020000.switch: Failed to register DSA switch: -517
+[    1.903542] i2c_dev: i2c /dev entries driver
+[    1.908283] /soc/i2c@11003000/rt5190a@64: Fixed dependency cycle(s) with /soc/i2c@11003000/rt5190a@64/regulators/buck1
+[    1.919408] i2c i2c-1: of_i2c: modalias failure on /soc/i2c@11004000/crypto@60
+[    1.926637] i2c i2c-1: Failed to create I2C device for /soc/i2c@11004000/crypto@60
+[    1.934894] mtk-lvts-thermal 1100a000.lvts: golden temp=60
+[    1.980517] mtk-wdt 1001c000.watchdog: Watchdog enabled (timeout=31 sec, nowayout=0)
+[    1.998334] hw perfevents: enabled with armv8_cortex_a73 PMU driver, 7 (0,8000003f) counters available
+[    2.008470] NET: Registered PF_INET6 protocol family
+[    2.013799] Segment Routing with IPv6
+[    2.017463] In-situ OAM (IOAM) with IPv6
+[    2.021413] NET: Registered PF_PACKET protocol family
+[    2.026472] bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+[    2.039464] 8021q: 802.1Q VLAN Support v1.8
+[    2.055416] phy phy-soc:xs-phy@11e10000.3: type_sw - reg 0x194, index 0
+[    2.062540] mtk-pcie-gen3 11290000.pcie: host bridge /soc/pcie@11290000 ranges:
+[    2.069848] mtk-pcie-gen3 11290000.pcie: Parsing ranges property...
+[    2.076121] mtk-pcie-gen3 11290000.pcie:       IO 0x0028000000..0x00281fffff -> 0x0028000000
+[    2.084554] mtk-pcie-gen3 11290000.pcie:      MEM 0x0028200000..0x002fffffff -> 0x0028200000
+[    2.093011] mtk-pcie-gen3 11290000.pcie: failed to get max link width
+[    2.344548] mtk-pcie-gen3 11290000.pcie: set IO trans window[0]: cpu_addr = 0x28000000, pci_addr = 0x28000000, size = 0x200000
+[    2.355949] mtk-pcie-gen3 11290000.pcie: set MEM trans window[1]: cpu_addr = 0x28200000, pci_addr = 0x28200000, size = 0x200000
+[    2.367414] mtk-pcie-gen3 11290000.pcie: set MEM trans window[2]: cpu_addr = 0x28400000, pci_addr = 0x28400000, size = 0x400000
+[    2.378878] mtk-pcie-gen3 11290000.pcie: set MEM trans window[3]: cpu_addr = 0x28800000, pci_addr = 0x28800000, size = 0x800000
+[    2.390340] mtk-pcie-gen3 11290000.pcie: set MEM trans window[4]: cpu_addr = 0x29000000, pci_addr = 0x29000000, size = 0x1000000
+[    2.401889] mtk-pcie-gen3 11290000.pcie: set MEM trans window[5]: cpu_addr = 0x2a000000, pci_addr = 0x2a000000, size = 0x2000000
+[    2.413438] mtk-pcie-gen3 11290000.pcie: set MEM trans window[6]: cpu_addr = 0x2c000000, pci_addr = 0x2c000000, size = 0x4000000
+[    2.425238] mtk-pcie-gen3 11290000.pcie: PCI host bridge to bus 0002:00
+[    2.431851] pci_bus 0002:00: root bus resource [bus 00-ff]
+[    2.437327] pci_bus 0002:00: root bus resource [io  0x0000-0x1fffff] (bus address [0x28000000-0x281fffff])
+[    2.446968] pci_bus 0002:00: root bus resource [mem 0x28200000-0x2fffffff]
+[    2.453834] pci_bus 0002:00: scanning bus
+[    2.457867] pci 0002:00:00.0: [14c3:7988] type 01 class 0x060400 PCIe Root Port
+[    2.465180] pci 0002:00:00.0: BAR 0 [mem 0x00000000-0x00007fff 64bit]
+[    2.471612] pci 0002:00:00.0: PCI bridge to [bus 00]
+[    2.476576] pci 0002:00:00.0:   bridge window [io  0x0000-0x0fff]
+[    2.482660] pci 0002:00:00.0:   bridge window [mem 0x00000000-0x000fffff]
+[    2.489440] pci 0002:00:00.0:   bridge window [mem 0x00000000-0x000fffff 64bit pref]
+[    2.497228] pci 0002:00:00.0: PME# supported from D0 D3hot D3cold
+[    2.503313] pci 0002:00:00.0: PME# disabled
+[    2.508523] pci_bus 0002:00: fixups for bus
+[    2.512705] pci 0002:00:00.0: scanning [bus 00-00] behind bridge, pass 0
+[    2.519394] pci 0002:00:00.0: bridge configuration invalid ([bus 00-00]), reconfiguring
+[    2.527390] pci 0002:00:00.0: scanning [bus 00-00] behind bridge, pass 1
+[    2.534127] pci_bus 0002:01: scanning bus
+[    2.538153] pci 0002:01:00.0: [1e95:100e] type 00 class 0x010802 PCIe Endpoint
+[    2.545387] pci 0002:01:00.0: BAR 0 [mem 0x00000000-0x00003fff 64bit]
+[    2.551849] pci 0002:01:00.0: BAR 5 [mem 0x00000000-0x00001fff]
+[    2.557912] pci 0002:01:00.0: 7.876 Gb/s available PCIe bandwidth, limited by 8.0 GT/s PCIe x1 link at 0002:00:00.0 (capable of 31.504 Gb/s with 8.0 GT/s PCIe x4 link)
+[    2.591885] pci_bus 0002:01: fixups for bus
+[    2.596057] pci_bus 0002:01: bus scan returning with max=01
+[    2.601617] pci_bus 0002:01: busn_res: [bus 01-ff] end is updated to 01
+[    2.608229] pci_bus 0002:00: bus scan returning with max=01
+[    2.613803] pci 0002:00:00.0: bridge window [mem 0x28200000-0x282fffff]: assigned
+[    2.621273] pci 0002:00:00.0: BAR 0 [mem 0x28300000-0x28307fff 64bit]: assigned
+[    2.628577] pci 0002:01:00.0: BAR 0 [mem 0x28200000-0x28203fff 64bit]: assigned
+[    2.635885] pci 0002:01:00.0: BAR 5 [mem 0x28204000-0x28205fff]: assigned
+[    2.642664] pci 0002:00:00.0: PCI bridge to [bus 01]
+[    2.647618] pci 0002:00:00.0:   bridge window [mem 0x28200000-0x282fffff]
+[    2.654398] pci_bus 0002:00: resource 4 [io  0x0000-0x1fffff]
+[    2.660131] pci_bus 0002:00: resource 5 [mem 0x28200000-0x2fffffff]
+[    2.666387] pci_bus 0002:01: resource 1 [mem 0x28200000-0x282fffff]
+[    2.672650] pci 0002:00:00.0: Max Payload Size set to  256/ 256 (was  128), Max Read Rq  256
+[    2.681090] pci 0002:01:00.0: Max Payload Size set to  256/ 512 (was  128), Max Read Rq  256
+[    2.689606] pcieport 0002:00:00.0: assign IRQ: got 117
+[    2.694740] pcieport 0002:00:00.0: enabling device (0000 -> 0002)
+[    2.700830] pcieport 0002:00:00.0: enabling bus mastering
+[    2.706555] mtk-pcie-gen3 11290000.pcie: msi#0x0 address_hi 0x0 address_lo 0x11290c00 data 0
+[    2.714990] mtk-pcie-gen3 11290000.pcie: msi#0x1 address_hi 0x0 address_lo 0x11290c00 data 1
+[    2.723418] mtk-pcie-gen3 11290000.pcie: msi#0x2 address_hi 0x0 address_lo 0x11290c00 data 2
+[    2.731844] mtk-pcie-gen3 11290000.pcie: msi#0x3 address_hi 0x0 address_lo 0x11290c00 data 3
+[    2.740267] mtk-pcie-gen3 11290000.pcie: msi#0x4 address_hi 0x0 address_lo 0x11290c00 data 4
+[    2.748692] mtk-pcie-gen3 11290000.pcie: msi#0x5 address_hi 0x0 address_lo 0x11290c00 data 5
+[    2.757117] mtk-pcie-gen3 11290000.pcie: msi#0x6 address_hi 0x0 address_lo 0x11290c00 data 6
+[    2.765541] mtk-pcie-gen3 11290000.pcie: msi#0x7 address_hi 0x0 address_lo 0x11290c00 data 7
+[    2.773966] mtk-pcie-gen3 11290000.pcie: msi#0x8 address_hi 0x0 address_lo 0x11290c00 data 8
+[    2.782390] mtk-pcie-gen3 11290000.pcie: msi#0x9 address_hi 0x0 address_lo 0x11290c00 data 9
+[    2.790813] mtk-pcie-gen3 11290000.pcie: msi#0xa address_hi 0x0 address_lo 0x11290c00 data 10
+[    2.799325] mtk-pcie-gen3 11290000.pcie: msi#0xb address_hi 0x0 address_lo 0x11290c00 data 11
+[    2.807836] mtk-pcie-gen3 11290000.pcie: msi#0xc address_hi 0x0 address_lo 0x11290c00 data 12
+[    2.816347] mtk-pcie-gen3 11290000.pcie: msi#0xd address_hi 0x0 address_lo 0x11290c00 data 13
+[    2.824859] mtk-pcie-gen3 11290000.pcie: msi#0xe address_hi 0x0 address_lo 0x11290c00 data 14
+[    2.833370] mtk-pcie-gen3 11290000.pcie: msi#0xf address_hi 0x0 address_lo 0x11290c00 data 15
+[    2.841883] mtk-pcie-gen3 11290000.pcie: msi#0x10 address_hi 0x0 address_lo 0x11290c00 data 16
+[    2.850480] mtk-pcie-gen3 11290000.pcie: msi#0x11 address_hi 0x0 address_lo 0x11290c00 data 17
+[    2.859078] mtk-pcie-gen3 11290000.pcie: msi#0x12 address_hi 0x0 address_lo 0x11290c00 data 18
+[    2.867677] mtk-pcie-gen3 11290000.pcie: msi#0x13 address_hi 0x0 address_lo 0x11290c00 data 19
+[    2.876275] mtk-pcie-gen3 11290000.pcie: msi#0x14 address_hi 0x0 address_lo 0x11290c00 data 20
+[    2.884872] mtk-pcie-gen3 11290000.pcie: msi#0x15 address_hi 0x0 address_lo 0x11290c00 data 21
+[    2.893471] mtk-pcie-gen3 11290000.pcie: msi#0x16 address_hi 0x0 address_lo 0x11290c00 data 22
+[    2.902069] mtk-pcie-gen3 11290000.pcie: msi#0x17 address_hi 0x0 address_lo 0x11290c00 data 23
+[    2.910665] mtk-pcie-gen3 11290000.pcie: msi#0x18 address_hi 0x0 address_lo 0x11290c00 data 24
+[    2.919263] mtk-pcie-gen3 11290000.pcie: msi#0x19 address_hi 0x0 address_lo 0x11290c00 data 25
+[    2.927861] mtk-pcie-gen3 11290000.pcie: msi#0x1a address_hi 0x0 address_lo 0x11290c00 data 26
+[    2.936459] mtk-pcie-gen3 11290000.pcie: msi#0x1b address_hi 0x0 address_lo 0x11290c00 data 27
+[    2.945057] mtk-pcie-gen3 11290000.pcie: msi#0x1c address_hi 0x0 address_lo 0x11290c00 data 28
+[    2.953661] mtk-pcie-gen3 11290000.pcie: msi#0x1d address_hi 0x0 address_lo 0x11290c00 data 29
+[    2.962262] mtk-pcie-gen3 11290000.pcie: msi#0x1e address_hi 0x0 address_lo 0x11290c00 data 30
+[    2.970858] mtk-pcie-gen3 11290000.pcie: msi#0x1f address_hi 0x0 address_lo 0x11290c00 data 31
+[    2.979820] mtk-pcie-gen3 11290000.pcie: msi#0x0 address_hi 0x0 address_lo 0x11290c00 data 0
+[    2.988315] pcieport 0002:00:00.0: PME: Signaling with IRQ 118
+[    2.994264] pcieport 0002:00:00.0: AER: enabled with IRQ 118
+[    2.999956] pcieport 0002:00:00.0: save config 0x00: 0x798814c3
+[    3.005888] pcieport 0002:00:00.0: save config 0x04: 0x00100406
+[    3.011796] pcieport 0002:00:00.0: save config 0x08: 0x06040001
+[    3.017708] pcieport 0002:00:00.0: save config 0x0c: 0x00010000
+[    3.023617] pcieport 0002:00:00.0: save config 0x10: 0x28300004
+[    3.029524] pcieport 0002:00:00.0: save config 0x14: 0x00000000
+[    3.035433] pcieport 0002:00:00.0: save config 0x18: 0x00010100
+[    3.041340] pcieport 0002:00:00.0: save config 0x1c: 0x000001f1
+[    3.047250] pcieport 0002:00:00.0: save config 0x20: 0x28202820
+[    3.053162] pcieport 0002:00:00.0: save config 0x24: 0x0001fff1
+[    3.059068] pcieport 0002:00:00.0: save config 0x28: 0x00000000
+[    3.064978] pcieport 0002:00:00.0: save config 0x2c: 0x00000000
+[    3.070885] pcieport 0002:00:00.0: save config 0x30: 0x00000000
+[    3.076794] pcieport 0002:00:00.0: save config 0x34: 0x00000080
+[    3.082704] pcieport 0002:00:00.0: save config 0x38: 0x00000000
+[    3.088611] pcieport 0002:00:00.0: save config 0x3c: 0x00020175
+[    3.094807] mtk-pcie-gen3 11300000.pcie: host bridge /soc/pcie@11300000 ranges:
+[    3.102127] mtk-pcie-gen3 11300000.pcie: Parsing ranges property...
+[    3.108393] mtk-pcie-gen3 11300000.pcie:       IO 0x0030000000..0x00301fffff -> 0x0030000000
+[    3.116831] mtk-pcie-gen3 11300000.pcie:      MEM 0x0030200000..0x0037ffffff -> 0x0030200000
+[    3.125311] mtk-pcie-gen3 11300000.pcie: failed to get max link width
+[    3.355593] mtk-pcie-gen3 11300000.pcie: set IO trans window[0]: cpu_addr = 0x30000000, pci_addr = 0x30000000, size = 0x200000
+[    3.366975] mtk-pcie-gen3 11300000.pcie: set MEM trans window[1]: cpu_addr = 0x30200000, pci_addr = 0x30200000, size = 0x200000
+[    3.378439] mtk-pcie-gen3 11300000.pcie: set MEM trans window[2]: cpu_addr = 0x30400000, pci_addr = 0x30400000, size = 0x400000
+[    3.389901] mtk-pcie-gen3 11300000.pcie: set MEM trans window[3]: cpu_addr = 0x30800000, pci_addr = 0x30800000, size = 0x800000
+[    3.401364] mtk-pcie-gen3 11300000.pcie: set MEM trans window[4]: cpu_addr = 0x31000000, pci_addr = 0x31000000, size = 0x1000000
+[    3.412913] mtk-pcie-gen3 11300000.pcie: set MEM trans window[5]: cpu_addr = 0x32000000, pci_addr = 0x32000000, size = 0x2000000
+[    3.424462] mtk-pcie-gen3 11300000.pcie: set MEM trans window[6]: cpu_addr = 0x34000000, pci_addr = 0x34000000, size = 0x4000000
+[    3.436101] mtk-pcie-gen3 11300000.pcie: PCI host bridge to bus 0000:00
+[    3.442713] pci_bus 0000:00: root bus resource [bus 00-ff]
+[    3.448189] pci_bus 0000:00: root bus resource [io  0x200000-0x3fffff] (bus address [0x30000000-0x301fffff])
+[    3.458004] pci_bus 0000:00: root bus resource [mem 0x30200000-0x37ffffff]
+[    3.464868] pci_bus 0000:00: scanning bus
+[    3.468890] pci 0000:00:00.0: [14c3:7988] type 01 class 0x060400 PCIe Root Port
+[    3.476204] pci 0000:00:00.0: BAR 0 [mem 0x00000000-0x00007fff 64bit]
+[    3.482639] pci 0000:00:00.0: PCI bridge to [bus 00]
+[    3.487595] pci 0000:00:00.0:   bridge window [io  0x0000-0x0fff]
+[    3.493679] pci 0000:00:00.0:   bridge window [mem 0x00000000-0x000fffff]
+[    3.500458] pci 0000:00:00.0:   bridge window [mem 0x00000000-0x000fffff 64bit pref]
+[    3.508241] pci 0000:00:00.0: PME# supported from D0 D3hot D3cold
+[    3.514326] pci 0000:00:00.0: PME# disabled
+[    3.519593] pci_bus 0000:00: fixups for bus
+[    3.523771] pci 0000:00:00.0: scanning [bus 00-00] behind bridge, pass 0
+[    3.530459] pci 0000:00:00.0: bridge configuration invalid ([bus 00-00]), reconfiguring
+[    3.538456] pci 0000:00:00.0: scanning [bus 00-00] behind bridge, pass 1
+[    3.545189] pci_bus 0000:01: scanning bus
+[    3.549211] pci 0000:01:00.0: [14c3:7992] type 00 class 0x028000 PCIe Endpoint
+[    3.556443] pci 0000:01:00.0: BAR 0 [mem 0x00000000-0x001fffff 64bit]
+[    3.562886] pci 0000:01:00.0: BAR 2 [mem 0x00000000-0x00007fff 64bit]
+[    3.569424] pci 0000:01:00.0: PME# supported from D0 D3hot D3cold
+[    3.575511] pci 0000:01:00.0: PME# disabled
+[    3.591883] pci_bus 0000:01: fixups for bus
+[    3.596055] pci_bus 0000:01: bus scan returning with max=01
+[    3.601615] pci_bus 0000:01: busn_res: [bus 01-ff] end is updated to 01
+[    3.608226] pci_bus 0000:00: bus scan returning with max=01
+[    3.613799] pci 0000:00:00.0: bridge window [mem 0x30200000-0x304fffff]: assigned
+[    3.621269] pci 0000:00:00.0: BAR 0 [mem 0x30500000-0x30507fff 64bit]: assigned
+[    3.628573] pci 0000:01:00.0: BAR 0 [mem 0x30200000-0x303fffff 64bit]: assigned
+[    3.635879] pci 0000:01:00.0: BAR 2 [mem 0x30400000-0x30407fff 64bit]: assigned
+[    3.643186] pci 0000:00:00.0: PCI bridge to [bus 01]
+[    3.648141] pci 0000:00:00.0:   bridge window [mem 0x30200000-0x304fffff]
+[    3.654921] pci_bus 0000:00: resource 4 [io  0x200000-0x3fffff]
+[    3.660828] pci_bus 0000:00: resource 5 [mem 0x30200000-0x37ffffff]
+[    3.667084] pci_bus 0000:01: resource 1 [mem 0x30200000-0x304fffff]
+[    3.673347] pci 0000:00:00.0: Max Payload Size set to  256/ 256 (was  128), Max Read Rq  256
+[    3.681785] pci 0000:01:00.0: Max Payload Size set to  256/ 256 (was  128), Max Read Rq  256
+[    3.690298] pcieport 0000:00:00.0: assign IRQ: got 120
+[    3.695433] pcieport 0000:00:00.0: enabling device (0000 -> 0002)
+[    3.701521] pcieport 0000:00:00.0: enabling bus mastering
+[    3.707223] mtk-pcie-gen3 11300000.pcie: msi#0x0 address_hi 0x0 address_lo 0x11300c00 data 0
+[    3.715657] mtk-pcie-gen3 11300000.pcie: msi#0x1 address_hi 0x0 address_lo 0x11300c00 data 1
+[    3.724087] mtk-pcie-gen3 11300000.pcie: msi#0x2 address_hi 0x0 address_lo 0x11300c00 data 2
+[    3.732513] mtk-pcie-gen3 11300000.pcie: msi#0x3 address_hi 0x0 address_lo 0x11300c00 data 3
+[    3.740937] mtk-pcie-gen3 11300000.pcie: msi#0x4 address_hi 0x0 address_lo 0x11300c00 data 4
+[    3.749363] mtk-pcie-gen3 11300000.pcie: msi#0x5 address_hi 0x0 address_lo 0x11300c00 data 5
+[    3.757789] mtk-pcie-gen3 11300000.pcie: msi#0x6 address_hi 0x0 address_lo 0x11300c00 data 6
+[    3.766213] mtk-pcie-gen3 11300000.pcie: msi#0x7 address_hi 0x0 address_lo 0x11300c00 data 7
+[    3.774637] mtk-pcie-gen3 11300000.pcie: msi#0x8 address_hi 0x0 address_lo 0x11300c00 data 8
+[    3.783062] mtk-pcie-gen3 11300000.pcie: msi#0x9 address_hi 0x0 address_lo 0x11300c00 data 9
+[    3.791485] mtk-pcie-gen3 11300000.pcie: msi#0xa address_hi 0x0 address_lo 0x11300c00 data 10
+[    3.799997] mtk-pcie-gen3 11300000.pcie: msi#0xb address_hi 0x0 address_lo 0x11300c00 data 11
+[    3.808508] mtk-pcie-gen3 11300000.pcie: msi#0xc address_hi 0x0 address_lo 0x11300c00 data 12
+[    3.817019] mtk-pcie-gen3 11300000.pcie: msi#0xd address_hi 0x0 address_lo 0x11300c00 data 13
+[    3.825531] mtk-pcie-gen3 11300000.pcie: msi#0xe address_hi 0x0 address_lo 0x11300c00 data 14
+[    3.834042] mtk-pcie-gen3 11300000.pcie: msi#0xf address_hi 0x0 address_lo 0x11300c00 data 15
+[    3.842554] mtk-pcie-gen3 11300000.pcie: msi#0x10 address_hi 0x0 address_lo 0x11300c00 data 16
+[    3.851151] mtk-pcie-gen3 11300000.pcie: msi#0x11 address_hi 0x0 address_lo 0x11300c00 data 17
+[    3.859749] mtk-pcie-gen3 11300000.pcie: msi#0x12 address_hi 0x0 address_lo 0x11300c00 data 18
+[    3.868348] mtk-pcie-gen3 11300000.pcie: msi#0x13 address_hi 0x0 address_lo 0x11300c00 data 19
+[    3.876946] mtk-pcie-gen3 11300000.pcie: msi#0x14 address_hi 0x0 address_lo 0x11300c00 data 20
+[    3.885544] mtk-pcie-gen3 11300000.pcie: msi#0x15 address_hi 0x0 address_lo 0x11300c00 data 21
+[    3.894142] mtk-pcie-gen3 11300000.pcie: msi#0x16 address_hi 0x0 address_lo 0x11300c00 data 22
+[    3.902740] mtk-pcie-gen3 11300000.pcie: msi#0x17 address_hi 0x0 address_lo 0x11300c00 data 23
+[    3.911337] mtk-pcie-gen3 11300000.pcie: msi#0x18 address_hi 0x0 address_lo 0x11300c00 data 24
+[    3.919935] mtk-pcie-gen3 11300000.pcie: msi#0x19 address_hi 0x0 address_lo 0x11300c00 data 25
+[    3.928534] mtk-pcie-gen3 11300000.pcie: msi#0x1a address_hi 0x0 address_lo 0x11300c00 data 26
+[    3.937132] mtk-pcie-gen3 11300000.pcie: msi#0x1b address_hi 0x0 address_lo 0x11300c00 data 27
+[    3.945730] mtk-pcie-gen3 11300000.pcie: msi#0x1c address_hi 0x0 address_lo 0x11300c00 data 28
+[    3.954328] mtk-pcie-gen3 11300000.pcie: msi#0x1d address_hi 0x0 address_lo 0x11300c00 data 29
+[    3.962927] mtk-pcie-gen3 11300000.pcie: msi#0x1e address_hi 0x0 address_lo 0x11300c00 data 30
+[    3.971523] mtk-pcie-gen3 11300000.pcie: msi#0x1f address_hi 0x0 address_lo 0x11300c00 data 31
+[    3.980458] mtk-pcie-gen3 11300000.pcie: msi#0x0 address_hi 0x0 address_lo 0x11300c00 data 0
+[    3.988948] pcieport 0000:00:00.0: PME: Signaling with IRQ 121
+[    3.994888] pcieport 0000:00:00.0: AER: enabled with IRQ 121
+[    4.000565] pcieport 0000:00:00.0: save config 0x00: 0x798814c3
+[    4.006480] pcieport 0000:00:00.0: save config 0x04: 0x00100406
+[    4.012390] pcieport 0000:00:00.0: save config 0x08: 0x06040001
+[    4.018296] pcieport 0000:00:00.0: save config 0x0c: 0x00010000
+[    4.024207] pcieport 0000:00:00.0: save config 0x10: 0x30500004
+[    4.030114] pcieport 0000:00:00.0: save config 0x14: 0x00000000
+[    4.036023] pcieport 0000:00:00.0: save config 0x18: 0x00010100
+[    4.041932] pcieport 0000:00:00.0: save config 0x1c: 0x000001f1
+[    4.047839] pcieport 0000:00:00.0: save config 0x20: 0x30403020
+[    4.053747] pcieport 0000:00:00.0: save config 0x24: 0x0001fff1
+[    4.059654] pcieport 0000:00:00.0: save config 0x28: 0x00000000
+[    4.065562] pcieport 0000:00:00.0: save config 0x2c: 0x00000000
+[    4.071469] pcieport 0000:00:00.0: save config 0x30: 0x00000000
+[    4.077387] pcieport 0000:00:00.0: save config 0x34: 0x00000080
+[    4.083295] pcieport 0000:00:00.0: save config 0x38: 0x00000000
+[    4.089202] pcieport 0000:00:00.0: save config 0x3c: 0x00020178
+[    4.095387] mtk-pcie-gen3 11310000.pcie: host bridge /soc/pcie@11310000 ranges:
+[    4.102696] mtk-pcie-gen3 11310000.pcie: Parsing ranges property...
+[    4.108959] mtk-pcie-gen3 11310000.pcie:       IO 0x0038000000..0x00381fffff -> 0x0038000000
+[    4.117391] mtk-pcie-gen3 11310000.pcie:      MEM 0x0038200000..0x003fffffff -> 0x0038200000
+[    4.125868] mtk-pcie-gen3 11310000.pcie: failed to get max link width
+[    4.451869] mtk-pcie-gen3 11310000.pcie: PCIe link down, current LTSSM state: detect.quiet (0x1)
+[    4.460654] mtk-pcie-gen3 11310000.pcie: probe with driver mtk-pcie-gen3 failed with error -110
+[    4.469969] FIT: Detected U-Boot 2025.07-g9a25de54e417-dirty
+[    4.475629] FIT: Selected configuration: "config-1" (OpenWrt asiarf_ap7988-003)
+[    4.482934] FIT:           kernel sub-image 0x00001000..0x007596dd "kernel-1" (ARM64 OpenWrt Linux-6.12.62) 
+[    4.492755] FIT:          flat_dt sub-image 0x0075a000..0x00765469 "fdt-1" (ARM64 OpenWrt asiarf_ap7988-003 device tree blob) 
+[    4.504137] FIT:          flat_dt sub-image 0x00766000..0x0076662b "fdt-mt7988a-asiarf-ap7988-003-mmc" (ARM64 OpenWrt asiarf_ap7988-003 device tree overlay mt7988a-asiarf-ap7988-003-mmc) 
+[    4.520812] FIT:          flat_dt sub-image 0x00767000..0x00767328 "fdt-mt7988a-asiarf-ap7988-003-sd" (ARM64 OpenWrt asiarf_ap7988-003 device tree overlay mt7988a-asiarf-ap7988-003-sd) 
+[    4.537312] FIT:          flat_dt sub-image 0x00768000..0x00768561 "fdt-mt7988a-asiarf-ap7988-003-spidev" (ARM64 OpenWrt asiarf_ap7988-003 device tree overlay mt7988a-asiarf-ap7988-003-spidev) 
+[    4.554504] FIT:       filesystem sub-image 0x00769000..0x02a55fff "rootfs-1" (ARM64 OpenWrt asiarf_ap7988-003 rootfs) 
+[    4.565513] block ubiblock0_1: mapped 1 uImage.FIT filesystem sub-image as /dev/fit0
+[    4.574267] mt7530-mmio 15020000.switch: Failed to register DSA switch: -517
+[    7.121954] Aquantia AQR113C mdio-bus:08: loading firmware version 'v5.6.9 Mediatek Mediatek 23B 100522 05:37:14' from 'NVMEM'
+[   22.960005] hwmon hwmon8: temp1_input not attached to any thermal zone
+[   22.971096] mtk_eth (dummy): netif_napi_add_weight() called with weight 256
+[   22.978622] mtk_soc_eth 15100000.ethernet eth0: mediatek frame engine at 0xffffffc082c00000, irq 109
+[   22.988227] mtk_soc_eth 15100000.ethernet eth1: mediatek frame engine at 0xffffffc082c00000, irq 109
+[   22.997831] mtk_soc_eth 15100000.ethernet eth2: mediatek frame engine at 0xffffffc082c00000, irq 109
+[   23.103932] mt7530-mmio 15020000.switch: configuring for fixed/internal link mode
+[   23.111435] mt7530-mmio 15020000.switch: Link is Up - 10Gbps/Full - flow control rx/tx
+[   23.141639] mt7530-mmio 15020000.switch lan1 (uninitialized): PHY [mt7530_dsa-0:00] driver [MediaTek MT7988 PHY] (irq=124)
+[   23.183721] mt7530-mmio 15020000.switch lan2 (uninitialized): PHY [mt7530_dsa-0:01] driver [MediaTek MT7988 PHY] (irq=125)
+[   23.225816] mt7530-mmio 15020000.switch lan3 (uninitialized): PHY [mt7530_dsa-0:02] driver [MediaTek MT7988 PHY] (irq=126)
+[   23.267725] mt7530-mmio 15020000.switch lan4 (uninitialized): PHY [mt7530_dsa-0:03] driver [MediaTek MT7988 PHY] (irq=127)
+[   23.279117] mtk_soc_eth 15100000.ethernet eth0: entered promiscuous mode
+[   23.285829] DSA: tree 0 setup
+[   23.288788] mt7530-nl: genl_register_family_with_ops 
+[   23.294082] clk: Disabling unused clocks
+[   23.298453] PM: genpd: Disabling unused power domains
+[   23.306185] VFS: Mounted root (squashfs filesystem) readonly on device 259:0.
+[   23.313461] Freeing unused kernel memory: 576K
+[   23.317938] Run /sbin/init as init process
+[   23.322030]   with arguments:
+[   23.324985]     /sbin/init
+[   23.327681]   with environment:
+[   23.330810]     HOME=/
+[   23.333161]     TERM=linux
+[   23.457280] init: Console is alive
+[   23.460770] init: - watchdog -
+[   23.749099] kmodloader: loading kernel modules from /etc/modules-boot.d/*
+[   23.769051] usbcore: registered new interface driver usbfs
+[   23.774588] usbcore: registered new interface driver hub
+[   23.779916] usbcore: registered new device driver usb
+[   23.785490] gpio_button_hotplug: loading out-of-tree module taints kernel.
+[   23.796368] xhci-mtk 11190000.usb: supply vbus not found, using dummy regulator
+[   23.803779] xhci-mtk 11190000.usb: supply vusb33 not found, using dummy regulator
+[   23.811589] xhci-mtk 11190000.usb: xHCI Host Controller
+[   23.816842] xhci-mtk 11190000.usb: new USB bus registered, assigned bus number 1
+[   23.824429] xhci-mtk 11190000.usb: hcc params 0x01403f99 hci version 0x110 quirks 0x0000000000200010
+[   23.833588] xhci-mtk 11190000.usb: irq 128, io mem 0x11190000
+[   23.839390] xhci-mtk 11190000.usb: xHCI Host Controller
+[   23.844623] xhci-mtk 11190000.usb: new USB bus registered, assigned bus number 2
+[   23.852023] xhci-mtk 11190000.usb: Host supports USB 3.2 Enhanced SuperSpeed
+[   23.859315] hub 1-0:1.0: USB hub found
+[   23.863076] hub 1-0:1.0: 1 port detected
+[   23.867142] usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
+[   23.875369] hub 2-0:1.0: USB hub found
+[   23.879116] hub 2-0:1.0: 1 port detected
+[   23.883268] xhci-mtk 11200000.usb: supply vbus not found, using dummy regulator
+[   23.890620] xhci-mtk 11200000.usb: supply vusb33 not found, using dummy regulator
+[   23.898545] xhci-mtk 11200000.usb: xHCI Host Controller
+[   23.903774] xhci-mtk 11200000.usb: new USB bus registered, assigned bus number 3
+[   23.914161] xhci-mtk 11200000.usb: hcc params 0x01403f99 hci version 0x110 quirks 0x0000000000200010
+[   23.923313] xhci-mtk 11200000.usb: irq 129, io mem 0x11200000
+[   23.929110] xhci-mtk 11200000.usb: xHCI Host Controller
+[   23.934330] xhci-mtk 11200000.usb: new USB bus registered, assigned bus number 4
+[   23.941714] xhci-mtk 11200000.usb: Host supports USB 3.2 Enhanced SuperSpeed
+[   23.948947] hub 3-0:1.0: USB hub found
+[   23.952704] hub 3-0:1.0: 1 port detected
+[   23.956745] usb usb4: We don't know the algorithms for LPM for this host, disabling LPM.
+[   23.964982] hub 4-0:1.0: USB hub found
+[   23.968728] hub 4-0:1.0: 1 port detected
+[   24.092161] kmodloader: done loading kernel modules from /etc/modules-boot.d/*
+[   24.109578] init: - preinit -
+[   24.401902] usb 3-1: new high-speed USB device number 2 using xhci-mtk
+[   24.404232] mtk_ppe: roaming work has been activated
+[   24.413414] mtk_soc_eth 15100000.ethernet eth0: configuring for fixed/internal link mode
+[   24.421535] mtk_soc_eth 15100000.ethernet eth0: Link is Up - 10Gbps/Full - flow control rx/tx
+[   24.435205] mt7530-mmio 15020000.switch lan1: configuring for phy/internal link mode
+Press the [f] key and hit [enter] to enter failsafe mode
+Press the [1], [2], [3] or [4] key and hit [enter] to select the debug level
+[   28.727586] UBIFS (ubi0:2): Mounting in unauthenticated mode
+[   28.733351] UBIFS (ubi0:2): background thread "ubifs_bgt0_2" started, PID 1014
+[   28.750866] UBIFS (ubi0:2): recovery needed
+[   28.819339] UBIFS (ubi0:2): recovery completed
+[   28.823820] UBIFS (ubi0:2): UBIFS: mounted UBI device 0, volume 2, name "rootfs_data"
+[   28.831640] UBIFS (ubi0:2): LEB size: 126976 bytes (124 KiB), min./max. I/O unit sizes: 2048 bytes/2048 bytes
+[   28.841545] UBIFS (ubi0:2): FS size: 55742464 bytes (53 MiB, 439 LEBs), max 449 LEBs, journal size 2793472 bytes (2 MiB, 22 LEBs)
+[   28.853184] UBIFS (ubi0:2): reserved for root: 2632854 bytes (2571 KiB)
+[   28.859788] UBIFS (ubi0:2): media format: w5/r0 (latest is w5/r0), UUID 0D51ADD3-2E71-4B49-8404-CEA80B410B9B, small LPT model
+[   28.873284] mount_root: switching to ubifs overlay
+[   28.881409] overlayfs: null uuid detected in lower fs '/', falling back to xino=off,index=off,nfs_export=off.
+[   28.894500] urandom-seed: Seeding with /etc/urandom.seed
+[   28.933473] procd: - early -
+[   28.936404] procd: - watchdog -
+[   29.471128] procd: - watchdog -
+[   29.482328] procd: - ubus -
+[   29.638330] procd: - init -
+Please press Enter to activate this console.
+[   29.839588] kmodloader: loading kernel modules from /etc/modules.d/*
+[   29.905307] MediaTek MT7988 2.5GbE PHY mdio-bus:0f: Firmware date code: 2024/10/30, version: 10.0.0
+[   29.910824] urngd: v1.0.2 started.
+[   29.918325] crypto-safexcel 15600000.crypto: EIP197:331(7,1,8,4)-HIA:272(2,5,5),PE:151/450(alg:7fe1fc00)/240/240/450
+[   29.929679] crypto-safexcel 15600000.crypto: TRC init: 8704d,48a (32r,128h)
+[   29.952323] Bridge firewalling registered
+[   29.956681] Loading modules backported from Linux version wireless-next-2025-11-27-0-gf9e788c5fd3a
+[   29.965651] Backport generated by backports.git 09e33c88
+[   29.985921] xt_time: kernel timezone is -0000
+[   30.107999] mt7996e 0000:01:00.0: assign IRQ: got 120
+[   30.113128] mt7996e 0000:01:00.0: enabling device (0000 -> 0002)
+[   30.119169] mt7996e 0000:01:00.0: enabling bus mastering
+[   30.124487] mt7996e 0000:01:00.0: disabling ASPM L0s L1
+[   30.181862] mt7996e 0000:01:00.0: attaching wed device 0 version 3.0
+[   30.234128] platform 15010000.wed: MTK WED WO Firmware Version: ____000000, Build Time: 20230218204509
+[   30.243451] platform 15010000.wed: MTK WED WO Chip ID 00 Region 2
+[   30.522705] mt7996e 0000:01:00.0: HW/SW Version: 0x8a108a10, Build Time: 20251225150413a
+[   30.522705] 
+[   30.666483] mt7996e 0000:01:00.0: WM Firmware Version: ____000000, Build Time: 20251225150502
+[   30.696439] mt7996e 0000:01:00.0: DSP Firmware Version: ____000000, Build Time: 20251225150333
+[   30.747172] mt7996e 0000:01:00.0: WA Firmware Version: ____000000, Build Time: 20251225150408
+[   32.219732] mt7996e 0000:01:00.0: registering led 'mt76-phy0'
+[   32.329836] PPP generic driver version 2.4.2
+[   32.335000] NET: Registered PF_PPPOX protocol family
+[   32.341760] kmodloader: done loading kernel modules from /etc/modules.d/*
+[   35.320670] mt7996e 0000:01:00.0: Platform_type = 0, bypass_rro = 2, txfree_path = 1
+[   35.968704] mtk_soc_eth 15100000.ethernet eth2: PHY [mdio-bus:08] driver [Aquantia AQR113C] (irq=POLL)
+[   35.978083] mtk_soc_eth 15100000.ethernet eth2: configuring for phy/usxgmii link mode
+[   36.002788] br-lan: port 1(eth2) entered blocking state
+[   36.008046] br-lan: port 1(eth2) entered disabled state
+[   36.013371] mtk_soc_eth 15100000.ethernet eth2: entered allmulticast mode
+[   36.020334] mtk_soc_eth 15100000.ethernet eth2: entered promiscuous mode
+[   36.032247] mtk_soc_eth 15100000.ethernet eth0: Link is Down
+[   36.040094] mtk_soc_eth 15100000.ethernet eth0: configuring for fixed/internal link mode
+[   36.048364] mtk_soc_eth 15100000.ethernet eth0: Link is Up - 10Gbps/Full - flow control rx/tx
+[   36.058782] mt7530-mmio 15020000.switch lan1: configuring for phy/internal link mode
+[   36.067489] br-lan: port 2(lan1) entered blocking state
+[   36.072758] br-lan: port 2(lan1) entered disabled state
+[   36.078011] mt7530-mmio 15020000.switch lan1: entered allmulticast mode
+[   36.084650] mtk_soc_eth 15100000.ethernet eth0: entered allmulticast mode
+[   36.091664] mt7530-mmio 15020000.switch lan1: entered promiscuous mode
+[   36.101259] mt7530-mmio 15020000.switch lan2: configuring for phy/internal link mode
+[   36.109811] br-lan: port 3(lan2) entered blocking state
+[   36.115113] br-lan: port 3(lan2) entered disabled state
+[   36.120369] mt7530-mmio 15020000.switch lan2: entered allmulticast mode
+[   36.127274] mt7530-mmio 15020000.switch lan2: entered promiscuous mode
+[   36.144427] mt7530-mmio 15020000.switch lan3: configuring for phy/internal link mode
+[   36.153023] br-lan: port 4(lan3) entered blocking state
+[   36.158265] br-lan: port 4(lan3) entered disabled state
+[   36.163555] mt7530-mmio 15020000.switch lan3: entered allmulticast mode
+[   36.170613] mt7530-mmio 15020000.switch lan3: entered promiscuous mode
+[   36.179282] mt7530-mmio 15020000.switch lan4: configuring for phy/internal link mode
+[   36.187888] br-lan: port 5(lan4) entered blocking state
+[   36.193181] br-lan: port 5(lan4) entered disabled state
+[   36.198438] mt7530-mmio 15020000.switch lan4: entered allmulticast mode
+[   36.205365] mt7530-mmio 15020000.switch lan4: entered promiscuous mode
+[   36.219892] mtk_soc_eth 15100000.ethernet eth1: PHY [mdio-bus:0f] driver [MediaTek MT7988 2.5GbE PHY] (irq=POLL)
+[   36.230202] mtk_soc_eth 15100000.ethernet eth1: configuring for phy/internal link mode
+[   36.829899] br-lan: port 6(phy0.0-ap2) entered blocking state
+[   36.835747] br-lan: port 6(phy0.0-ap2) entered disabled state
+[   36.841537] mt7996e 0000:01:00.0 phy0.0-ap2: entered allmulticast mode
+[   36.848342] mt7996e 0000:01:00.0 phy0.0-ap2: entered promiscuous mode
+[   36.850056] Per-port-per-queue mode is going to be enabled !
+[   36.860552] PPPQ use qid 3~14 (scheduler 0).
+[   36.875860] mt7996e 0000:01:00.0: mt76_add_chanctx: add 1 on mt76 band 0
+[   37.090865] mt7996e 0000:01:00.0: mt76_assign_vif_chanctx: assign link_id 0 to 2412 MHz
+[   37.098955] mt7996e 0000:01:00.0: mt7996_mcu_add_dev_info: band=0, omac=0, addr=00:0a:52:0c:e3:40, en=1
+[   37.109539] mt7996e 0000:01:00.0: mt7996_mcu_bss_basic_tlv: band=0, omac=0, wmm_idx=0, bssid=00:0a:52:0c:e3:40, link=0, en=1
+[   37.120788] mt7996_mcu_bss_mld_tlv: group_mld_id=255, own_mld_id=16, remap_idx=255, mld->addr[00:00:00:00:00:00]
+[   37.133766] mt7996e 0000:01:00.0: mt7996_mcu_add_sta: link=0, wcid=543, newly=1, conn_state=2
+[   37.147734] mt7996e 0000:01:00.0: mt7996_vif_link_add: band=0, bss_idx=0, link_id=0, wcid=543
+[   37.156287] mt7996e 0000:01:00.0: mt7996_mcu_bss_basic_tlv: band=0, omac=0, wmm_idx=0, bssid=00:0a:52:0c:e3:40, link=0, en=1
+[   37.167495] mt7996_mcu_bss_mld_tlv: group_mld_id=255, own_mld_id=16, remap_idx=255, mld->addr[00:00:00:00:00:00]
+[   37.180239] mt7996e 0000:01:00.0: mt7996_mcu_add_sta: link=0, wcid=543, newly=0, conn_state=2
+[   37.202444] br-lan: port 6(phy0.0-ap2) entered blocking state
+[   37.208208] br-lan: port 6(phy0.0-ap2) entered forwarding state
+[   37.698227] br-lan: port 7(phy0.1-ap2) entered blocking state
+[   37.704050] br-lan: port 7(phy0.1-ap2) entered disabled state
+[   37.709828] mt7996e 0000:01:00.0 phy0.1-ap2: entered allmulticast mode
+[   37.716542] mt7996e 0000:01:00.0 phy0.1-ap2: entered promiscuous mode
+[   38.053745] br-lan: port 7(phy0.1-ap2) entered blocking state
+[   38.059510] br-lan: port 7(phy0.1-ap2) entered forwarding state
+[   38.065541] br-lan: port 7(phy0.1-ap2) entered disabled state
+[   38.073205] nl80211_start_radar_detection: region = 1, center freq1 = 5250, center freq2 = 0, cac time ms = 60000
+[   38.083548] mt7996e 0000:01:00.0: mt76_add_chanctx: add 36 on mt76 band 1
+[   38.170742] mt7996e 0000:01:00.0: mt76_assign_vif_chanctx: assign link_id 0 to 5180 MHz
+[   38.178760] mt7996e 0000:01:00.0: mt7996_mcu_add_dev_info: band=1, omac=0, addr=06:0a:52:0d:03:40, en=1
+[   38.190166] mt7996e 0000:01:00.0: mt7996_mcu_bss_basic_tlv: band=1, omac=0, wmm_idx=0, bssid=06:0a:52:0d:03:40, link=0, en=1
+[   38.201427] mt7996_mcu_bss_mld_tlv: group_mld_id=255, own_mld_id=17, remap_idx=255, mld->addr[00:00:00:00:00:00]
+[   38.214284] mt7996e 0000:01:00.0: mt7996_mcu_add_sta: link=0, wcid=542, newly=1, conn_state=2
+[   38.228485] mt7996e 0000:01:00.0: mt7996_vif_link_add: band=1, bss_idx=1, link_id=0, wcid=542
+[   38.239801] mt7996e 0000:01:00.0: mt76_change_chanctx: change to 36, 0x4
+
+
+
+BusyBox v1.37.0 (2025-12-30 22:03:26 UTC) built-in shell (ash)
+
+  _______                     ________        __
+ |       |.-----.-----.-----.|  |  |  |.----.|  |_
+ |   -   ||  _  |  -__|     ||  |  |  ||   _||   _|
+ |_______||   __|_____|__|__||________||__|  |____|
+          |__| W I R E L E S S   F R E E D O M
+ -----------------------------------------------------
+ OpenWrt 25.12-SNAPSHOT, r32381+3-0d3e93e7ba
+ -----------------------------------------------------
+
+ === WARNING! =====================================
+ There is no root password defined on this device!
+ Use the "passwd" command to set up a new password
+ in order to prevent unauthorized SSH logins.
+ --------------------------------------------------
+
+
+ OpenWrt recently switched to the "apk" package manager!
+
+ OPKG Command           APK Equivalent      Description
+ ------------------------------------------------------------------
+ opkg install <pkg>     apk add <pkg>       Install a package
+ opkg remove <pkg>      apk del <pkg>       Remove a package
+ opkg upgrade           apk upgrade         Upgrade all packages
+ opkg files <pkg>       apk info -L <pkg>   List package contents
+ opkg list-installed    apk info            List installed packages
+ opkg update            apk update          Update package lists
+ opkg search <pkg>      apk search <pkg>    Search for packages
+ ------------------------------------------------------------------
+
+For more information visit:
+https://openwrt.org/docs/guide-user/additional-software/opkg-to-apk-cheatsheet
