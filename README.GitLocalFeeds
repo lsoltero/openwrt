@@ -1,0 +1,277 @@
+# OpenWrt Repository Maintenance Guide
+
+## Purpose
+
+This document describes the recommended workflow for maintaining the RDS OpenWrt
+fork and custom packages while remaining synchronized with upstream OpenWrt
+feeds and repositories.
+
+This workflow avoids modifying stock feed packages directly and instead keeps
+customizations in a separate feed repository.
+
+## Branch Structure
+
+The OpenWrt fork uses the following branch structure:
+
+```
+openwrt-25.12   upstream tracking branch
+rds-25.12       RDS firmware development branch
+```
+
+Rules:
+
+* openwrt-25.12 must always track upstream OpenWrt with no custom changes.
+* rds-25.12 contains RDS-specific firmware changes.
+* All package customizations should be stored in the RDS feed repository.
+
+## Feed Repository
+
+A separate repository stores all custom packages and overridden upstream packages.
+
+Example repository:
+
+```
+https://github.com/<youruser>/rds-feed
+```
+
+Typical structure:
+
+```
+rds-feed/
+    net/
+    utils/
+    admin/
+    luci/
+```
+
+Each package directory contains a normal OpenWrt package definition.
+
+## Adding the Custom Feed
+
+Add the custom feed to OpenWrt by editing feeds.conf or feeds.conf.default:
+
+```
+src-git rds https://github.com/<youruser>/rds-feed.git
+```
+
+Then update feeds:
+
+```
+./scripts/feeds update -a
+```
+
+## Importing a Stock Package for Customization
+
+Stock packages must never be modified directly inside the feeds directory.
+
+Instead copy the package into the custom feed repository.
+
+Example:
+
+```
+cp -a feeds/packages/net/tcpdump ~/rds-feed/net/
+```
+
+Commit the imported package:
+
+```
+cd ~/rds-feed
+git add net/tcpdump
+git commit -m "Import tcpdump from OpenWrt packages feed"
+git push
+```
+
+After this, modifications should be made only inside the rds-feed repository.
+
+## Installing a Custom Feed Package
+
+After modifying a package in the custom feed repository:
+
+Update the feed in the OpenWrt tree:
+
+```
+./scripts/feeds update rds
+```
+
+Install the package from the custom feed:
+
+```
+./scripts/feeds install -f -p rds <packagename>
+```
+
+Example:
+
+```
+./scripts/feeds install -f -p rds tcpdump
+```
+
+Options explained:
+
+```
+-f    force reinstall if package already installed
+-p    specify the feed name
+```
+
+## Daily Build Workflow
+
+Typical workflow before building firmware:
+
+```
+./scripts/feeds update -a
+./scripts/feeds install -a
+```
+
+Then reinstall overridden packages from the RDS feed:
+
+```
+./scripts/feeds install -f -p rds <package list>
+```
+
+Example:
+
+```
+./scripts/feeds install -f -p rds tcpdump mwan3 luci-app-mwan3
+```
+
+## Updating Upstream Feeds
+
+Stock feeds can be safely updated using:
+
+```
+./scripts/feeds update -a
+./scripts/feeds install -a
+```
+
+Since customizations are stored in the rds-feed repository,
+updating feeds will not overwrite local modifications.
+
+After updating feeds, reinstall overridden packages:
+
+```
+./scripts/feeds install -f -p rds <packagename>
+```
+
+## Syncing Custom Packages with Upstream
+
+When upstream updates a package that has been overridden:
+
+1. Update upstream feeds.
+
+   ```
+   ./scripts/feeds update packages
+   ```
+
+2. Compare the upstream version with the custom version.
+
+   ```
+   diff -ru feeds/packages/net/tcpdump ~/rds-feed/net/tcpdump
+   ```
+
+3. Merge desired upstream changes into the rds-feed package.
+
+4. Commit the updated package.
+
+   ```
+   cd ~/rds-feed
+   git add net/tcpdump
+   git commit -m "tcpdump: merge upstream package updates"
+   git push
+   ```
+
+5. Reinstall the updated package in the OpenWrt tree.
+
+   ```
+   ./scripts/feeds update rds
+   ./scripts/feeds install -f -p rds tcpdump
+   ```
+
+## Rules for Package Customization
+
+Rule 1
+
+Never edit packages inside:
+
+```
+feeds/packages/
+feeds/luci/
+feeds/telephony/
+```
+
+These directories are controlled by upstream feeds.
+
+Rule 2
+
+All custom or modified packages must live in the rds-feed repository.
+
+Rule 3
+
+After running:
+
+```
+./scripts/feeds install -a
+```
+
+any overridden packages must be reinstalled explicitly:
+
+```
+./scripts/feeds install -f -p rds <packagename>
+```
+
+Rule 4
+
+Core OpenWrt modifications belong in the OpenWrt fork,
+not in the feed repository.
+
+Examples of core modifications:
+
+```
+target/
+include/
+package/base-files/
+kernel configuration
+board definitions
+firmware image generation
+```
+
+## Updating the OpenWrt Fork
+
+To update the upstream OpenWrt branch:
+
+```
+git checkout openwrt-25.12
+git pull --rebase upstream openwrt-25.12
+```
+
+Then update the RDS development branch:
+
+```
+git checkout rds-25.12
+git rebase openwrt-25.12
+```
+
+Push the updated branch:
+
+```
+git push --force-with-lease
+```
+
+## Summary
+
+OpenWrt fork (this repository):
+
+```
+tracks upstream OpenWrt
+contains firmware build changes
+contains board and system modifications
+```
+
+RDS feed repository:
+
+```
+contains custom packages
+contains overridden upstream packages
+maintains package history independently
+```
+
+This structure allows safe upstream updates while preserving
+all RDS customizations under version control.
