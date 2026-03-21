@@ -399,13 +399,22 @@ define Device/asiarf_ap7988-003
   DEVICE_DTC_FLAGS := --pad 4096
   DEVICE_DTS_LOADADDR := 0x45f00000
   KERNEL_LOADADDR := 0x46000000
+
+  BLOCKSIZE := 128k
+  PAGESIZE := 2048
+  UBINIZE_OPTS := -E 5
+  KERNEL_IN_UBI := 1
+  UBOOTENV_IN_UBI := 1
+
   KERNEL := kernel-bin | gzip
   KERNEL_INITRAMFS := kernel-bin | lzma | \
         fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb with-initrd | pad-to 64k
-  KERNEL_INITRAMFS_SUFFIX := .itb
+  KERNEL_INITRAMFS_SUFFIX := -recovery.itb
+
   IMAGES := sysupgrade.itb
-  IMAGE_SIZE := 65536k
-  IMAGE/sysupgrade.itb := append-kernel | fit gzip $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb external-with-rootfs | pad-rootfs | append-metadata
+  IMAGE/sysupgrade.itb := append-kernel | \
+        fit gzip $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb external-static-with-rootfs | \
+        append-metadata
 endef
 TARGET_DEVICES += asiarf_ap7988-003
 
