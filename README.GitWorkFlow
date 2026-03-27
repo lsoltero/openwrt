@@ -23,7 +23,7 @@ Branches:
 
     main                upstream development branch
     openwrt-25.12       upstream release branch
-    pw-hub-25.12        local working branch for custom modifications
+    rds-25.12           local working branch for custom modifications
 
 
 Initial Setup
@@ -70,31 +70,199 @@ Do NOT modify the upstream tracking branch directly.
 
 Instead create a working branch:
 
-    git checkout -b pw-hub-25.12 openwrt-25.12
+    git checkout -b rds-25.12 openwrt-25.12
 
 
 All custom work should occur in this branch.
 
 
-Keeping Your Fork Updated
--------------------------
+Updating to a New Upstream Release
+-----------------------------------
 
-Update the upstream branch:
+When a new upstream release arrives (e.g. 25.12.1), follow these steps in
+order. Do not skip the pre-flight checks -- they prevent nasty surprises
+during the rebase.
+
+
+Step 1: Pre-flight Checks
+..........................
+
+    # Verify remotes are correct.
+    # origin  -> your GitHub fork
+    # upstream -> official OpenWrt repo
+
+    git remote -v
+
+    # Make sure the working tree is clean.
+    # If you have uncommitted changes, either commit them or stash them
+    # before proceeding:
+    #
+    #   git stash            (to stash)
+    #   git stash pop        (to restore later)
+
+    git status
+
+    # Show branch tracking info.
+    # openwrt-25.12 should track upstream/openwrt-25.12.
+    # rds-25.12 should show how many commits ahead it is.
+
+    git branch -vv
+
+    # List the commits that are unique to your working branch.
+    # These are the commits that will be replayed during the rebase.
+    # Verify this matches what you expect -- no missing or extra commits.
+
+    git log --oneline openwrt-25.12..rds-25.12
+
+    # Verify that your working branch forked from the tip of the
+    # tracking branch. The output hash should match the tip of
+    # openwrt-25.12 shown in "git branch -v".
+
+    git merge-base rds-25.12 openwrt-25.12
+
+    # Check that your local tracking branch is in sync with origin.
+    # Both commands should produce no output.
+
+    git fetch origin
+    git log --oneline origin/openwrt-25.12..openwrt-25.12
+    git log --oneline openwrt-25.12..origin/openwrt-25.12
+
+
+Step 2: Clean Up Commits (Optional)
+....................................
+
+If you have commits that should be squashed (e.g. a typo fix followed by
+the real fix), clean them up now with an interactive rebase:
+
+    git checkout rds-25.12
+    git rebase -i openwrt-25.12
+
+In the editor, use these commands to combine commits:
+
+    pick   = keep the commit as-is
+    fixup  = squash into the commit above, keep the above message
+    fixup -C = squash into the commit above, keep THIS commit message
+    squash = squash into the commit above, open editor to combine messages
+
+Example -- merging a typo fix into the original:
+
+    pick e15aa42 Update feeds.conf to include RDS feeeds
+    fixup -C 1099d77 update feeds.conf to include RDS feeds
+
+This produces a single commit with the corrected message.
+
+
+Step 3: Stash Uncommitted Changes
+..................................
+
+If "git status" showed modified or staged files, stash them now:
+
+    git stash
+
+Skip this step if the working tree is already clean.
+
+
+Step 4: Update the Tracking Branch
+...................................
 
     git checkout openwrt-25.12
-    git fetch upstream
+    git fetch upstream --tags
     git pull --rebase upstream openwrt-25.12
 
 
-Update your working branch:
+Step 5: Update Main (Optional, Good Hygiene)
+.............................................
 
-    git checkout pw-hub-25.12
+    git checkout main
+    git pull --rebase upstream main
+
+
+Step 6: Check for Upstream-Merged Commits
+.........................................
+
+If your working branch contains commits from upstream PRs that may have
+been merged into the release, check for them now:
+
+    git log --oneline openwrt-25.12 | grep -i "<search term>"
+
+Example:
+
+    git log --oneline openwrt-25.12 | grep -i "AsiaRF AP7988"
+
+If the commit appears in the upstream branch, git will automatically
+skip it during the rebase (or produce an empty commit that you can
+skip with "git rebase --skip").
+
+
+Step 7: Rebase Your Working Branch
+...................................
+
+    git checkout rds-25.12
     git rebase openwrt-25.12
 
+This replays your custom commits on top of the updated upstream branch.
 
-Push updates to GitHub:
+If you hit conflicts:
 
-    git push --force-with-lease
+    # Edit the conflicting files to resolve
+    git add <resolved-files>
+    git rebase --continue
+
+If an upstream-merged commit produces an empty result:
+
+    git rebase --skip
+
+To abandon the rebase entirely and return to the previous state:
+
+    git rebase --abort
+
+
+Step 8: Push Everything
+.......................
+
+    # Tracking branches are fast-forwards, no force needed.
+    git push origin openwrt-25.12
+    git push origin main
+
+    # Working branch history was rewritten by the rebase.
+    # --force-with-lease is required but safer than --force.
+    git push origin rds-25.12 --force-with-lease
+
+
+Step 9: Restore Stashed Changes
+................................
+
+If you stashed changes in Step 3:
+
+    git stash pop
+
+
+Step 10: Verify
+...............
+
+    # Confirm your commits are cleanly on top of the new upstream.
+    git log --oneline openwrt-25.12..rds-25.12
+
+    # Confirm the merge base is now the new tip of openwrt-25.12.
+    git merge-base rds-25.12 openwrt-25.12
+
+
+Deleting Stale PR Branches
+---------------------------
+
+If you applied an upstream PR as a local branch and it has since been
+merged into your working branch or upstream, you can safely delete it.
+
+First confirm that the changes exist in your working branch:
+
+    git log --oneline <pr-branch>..rds-25.12 -- <relevant/path>
+
+If the commits appear in rds-25.12, delete the branch:
+
+    git branch -D <pr-branch>
+
+Use -D (capital) for branches that have no tracking remote and were
+never merged in the git sense.
 
 
 Using Rebase Instead of Merge
@@ -121,16 +289,20 @@ You can simplify upstream syncing by adding this alias to ~/.gitconfig:
     [alias]
     sync = !"git fetch upstream && git rebase upstream/$(git rev-parse --abbrev-ref HEAD)"
 
-
 After adding this alias you can update your branch with:
 
     git sync
+
+Note: This alias only works on branches that have a matching upstream
+ref name (e.g. openwrt-25.12, main). It will NOT work on your working
+branch (rds-25.12) because upstream/rds-25.12 does not exist.
 
 
 Recommended Patch Strategy
 --------------------------
 
-For large OpenWrt customizations it is often easier to maintain changes as patches.
+For large OpenWrt customizations it is often easier to maintain changes as
+patches.
 
 Example structure:
 
@@ -144,6 +316,9 @@ Apply patches with:
 
     git am patches/*
 
+Generate patches from your working branch:
+
+    git format-patch openwrt-25.12 -o patches/
 
 This approach makes upgrading between OpenWrt versions significantly easier.
 
@@ -154,33 +329,31 @@ Recommended Vendor Branch Layout
     openwrt
     ├── main
     ├── openwrt-25.12
-    └── pw-hub-25.12
+    └── rds-25.12
 
     openwrt-25.12
-        Pure upstream tracking branch
+        Pure upstream tracking branch. Never commit directly.
 
-    pw-hub-25.12
-        PredictWind DataHub firmware modifications
-
-
-Typical Workflow
-----------------
-
-Update upstream:
-
-    git checkout openwrt-25.12
-    git sync
+    rds-25.12
+        RDS/PredictWind DataHub firmware modifications.
+        Always rebased on top of openwrt-25.12.
 
 
-Rebase your modifications:
+Quick Reference: Update Checklist
+----------------------------------
 
-    git checkout pw-hub-25.12
-    git rebase openwrt-25.12
-
-
-Push your updates:
-
-    git push --force-with-lease
+    [ ] git status                          # clean working tree?
+    [ ] git log --oneline openwrt-25.12..rds-25.12   # expected commits?
+    [ ] git stash                           # if needed
+    [ ] git checkout openwrt-25.12
+    [ ] git fetch upstream --tags
+    [ ] git pull --rebase upstream openwrt-25.12
+    [ ] git checkout rds-25.12
+    [ ] git rebase openwrt-25.12
+    [ ] git push origin openwrt-25.12
+    [ ] git push origin rds-25.12 --force-with-lease
+    [ ] git stash pop                       # if stashed
+    [ ] git log --oneline openwrt-25.12..rds-25.12   # verify
 
 
 Notes
@@ -191,3 +364,7 @@ Do not modify upstream tracking branches directly.
 Always develop on a separate working branch.
 
 Rebasing keeps the history clean and makes long-term maintenance much easier.
+
+When resolving rebase conflicts, take time to understand both sides.
+If unsure, "git rebase --abort" returns to the pre-rebase state with
+no damage done.
